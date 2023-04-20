@@ -1,0 +1,33 @@
+package com.example.firebaseappbtu1
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import android.content.Intent
+
+class ForgotPasswordActivity {
+    private lateinit var recoveryButton : Button
+    private lateinit var recoveryEmail : EditText
+
+    override fun OnCreate(savedInstanceStaste: Bundle?){
+        super.onCreate(savedInstanceStaste)
+        setContentView(R.layout.activity_forgot_password)
+        recoveryButton = findViewById(R.id.forgotButton)
+        recoveryEmail = findViewById(R.id.forgotEmailEditText)
+
+        recoveryButton.setOnClickListener{
+            val email = recoveryEmail.text.toString()
+            if(email.isEmpty()) return@setOnClickListener
+
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email).addOnCompleteListener{
+                if(it.isSuccessful){
+                    startActivity(Intent(this, LoginActivity::class,java))
+                    finish()
+                } else{
+                    Toast.makeText(this,"${it.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+}
