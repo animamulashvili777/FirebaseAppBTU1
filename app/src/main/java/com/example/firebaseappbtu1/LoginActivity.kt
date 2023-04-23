@@ -13,7 +13,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginEmailEditText : EditText
     private lateinit var loginPasswondEdiclext : EditText
-    private lateinit var LoginButton : Button
+    private lateinit var loginButton : Button
     private lateinit var forgotPasswordButton: TextView
     private lateinit var notRegisteredButton: TextView
     private val auth = FirebaseAuth.getInstance()
@@ -24,6 +24,12 @@ class LoginActivity : AppCompatActivity() {
 
         init()
         Listeners()
+        loginButton = findViewById(R.id.loginButton)
+
+        // Add click listener to the login button
+        loginButton.setOnClickListener {
+            // Perform login action
+        }
     }
 
     private fun Listeners(){
@@ -56,7 +62,7 @@ class LoginActivity : AppCompatActivity() {
         loginEmailEditText = findViewById(R.id.loginEmailEditText)
         loginPasswondEdiclext = findViewById(R.id.loginPasswordEditText)
         loginButton = findViewById(R.id.loginButton)
-        ForgotPasswordButton = findViewById(R.id.forgotPasswordButton)
+        forgotPasswordButton = findViewById(R.id.forgotPasswordButton)
         notRegisteredButton = findViewById(R.id.notRegisteredButton)
     }
 }
